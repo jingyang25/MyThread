@@ -1,0 +1,41 @@
+并发大师 Doug Lea
+1、并发编程基础
+demo 1、BIO模型优化 2、责任链  3、线程状态 ：线程的启动（start）和终止(interrupt)、 线程中断、线程复位（线程异常复位）
+
+4、hotspot源码
+jvm create 操作系统创建线程
+
+jvm start 加入到线程组 定义线程start线程属性
+
+jvm interrupt  线程终止（定义成员属性 中断线程 改变成员属性值 boolean）
+
+jvm 线程复位 Thread.interrupted() 异常
+
+场景：从计算机的发展带来进程和线程的概念  为了提升cpu的利用率
+
+需求：提升程序的性能
+
+解决方案：进程和线程
+
+应用：java
+
+原理:启动、终止
+
+5、如何应用线程 线程池
+
+
+6、实际 文件跑批、对账文件、BIO模型优化   zookeper 源码 责任链
+
+1)支付场景 -> redis 实现异步队列 支付请求加入redis队列 消费者去拿到队列去处理
+ 2）文件跑批-> 解析文件到数据库 定时任务跑批核对 通过线程去处理
+ 3）BIO模型优化 NIO soket.inputstream() 读阻塞 soket.outputstream() write阻塞
+    new Thread(new Handler(soket)).start() //解决r/w 阻塞问题
+
+
+
+
+
+
+
+
+
