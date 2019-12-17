@@ -1,6 +1,7 @@
-demo 线程中断标识实现中断 线程的异步执行
+demo 线程中断标识实现中断 线程的异步执行 synchronized基本使用案例
 
-  线程安全
+
+  多线程基本原理(3-5)
   一、多线程对同一资源做变更
   管理数据状态的访问 - 锁 ->互斥
 
@@ -9,18 +10,53 @@ demo 线程中断标识实现中断 线程的异步执行
   2、基本使用
      修饰实例方法、静态方法、代码块
   3、锁的存储
-     对象的存储
-  4、类型
-    重量级锁-> 轻量级锁 -> 偏向锁
-    GC 标记 垃圾回收标记
+     1、对象在内存中的布局
+     2、Markword
+     无锁-> 偏向锁 -> 轻量级锁 -> 重量级锁
 
+     3、1.6 之前 基于重量级锁来实现
+     synchronized(lock){
+      //同步代码块
+     ｝
+
+     4、demo
+     a、只有 ThreadA去访问（大部分情况属于这种）
+       引入偏向锁
+       ThreadA的ThreadID、偏向锁标记
+
+     b、ThreadA和ThreadB交替访问
+        轻量级锁 -> 自旋
+     c、多个线程同时访问
+        阻塞
+
+
+  三、偏向锁
+
+    1、偏向锁升级过程
+
+    升级的过程来达到
+        偏向锁 -> 轻量级锁 -> 重量级锁
+    2、什么是自旋
+      boolean cas(){
+
+     if(cas){
+       return;//获取成功
+       }
+       }
+
+  四、重量级锁
+
+    1、监视器 MonitorObject monitor ->MutexLock（互斥） 系统级别的线程切换
+    2、实现线程阻塞 wait
+       唤醒 notify/notifyAll
+
+
+    GC 标记 垃圾回收标记
     CAS 比较  实现原子性
     乐观锁
     Compare and swap(value,except,update)
     version 字段
     CompareAndSet()
-
-
 
 
   1、可见性
